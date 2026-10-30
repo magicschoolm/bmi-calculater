@@ -1,0 +1,564 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "DM Sans", sans-serif;
+  overflow: hidden;
+}
+
+/* =================================
+   NIGHT BACKGROUND
+================================= */
+
+.night-page {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(53, 91, 67, 0.45),
+      transparent 45%
+    ),
+    linear-gradient(
+      135deg,
+      #07120f,
+      #0b1d17 45%,
+      #10271e
+    );
+}
+
+/* =================================
+   MOON
+================================= */
+
+.moon {
+  position: absolute;
+
+  top: 8%;
+  right: 12%;
+
+  width: 105px;
+  height: 105px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #fffef0,
+      #e9e8c9 55%,
+      #c9caa7
+    );
+
+  box-shadow:
+    0 0 20px rgba(240, 241, 202, 0.5),
+    0 0 60px rgba(221, 228, 178, 0.2);
+
+  animation: moonFloat 6s ease-in-out infinite;
+}
+
+@keyframes moonFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* =================================
+   STARS
+================================= */
+
+.stars {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  background: #f4f2d4;
+
+  border-radius: 50%;
+
+  box-shadow:
+    20px 40px #f4f2d4,
+    100px 120px #dce7c7,
+    180px 70px #f4f2d4,
+    260px 180px #dce7c7,
+    340px 40px #f4f2d4,
+    420px 220px #f4f2d4,
+    500px 90px #dce7c7,
+    580px 160px #f4f2d4,
+    660px 50px #dce7c7,
+    740px 210px #f4f2d4,
+    820px 100px #f4f2d4,
+    900px 250px #dce7c7,
+    980px 70px #f4f2d4,
+    1080px 180px #dce7c7,
+    1160px 40px #f4f2d4,
+    1250px 140px #f4f2d4,
+    1350px 80px #dce7c7,
+    1450px 230px #f4f2d4;
+
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+.stars-one {
+  top: 0;
+  left: 0;
+}
+
+.stars-two {
+  top: 200px;
+  left: 100px;
+
+  transform: scale(0.6);
+
+  animation-delay: 1s;
+}
+
+.stars-three {
+  top: 400px;
+  left: 250px;
+
+  transform: scale(0.4);
+
+  animation-delay: 2s;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.25;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =================================
+   ASTEROIDS
+================================= */
+
+.asteroid {
+  position: absolute;
+
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  background: #9a8e78;
+
+  box-shadow:
+    15px 5px 0 #716958,
+    -5px 8px 0 #817866;
+
+  opacity: 0.7;
+}
+
+.asteroid-one {
+  top: 20%;
+  left: -30px;
+
+  animation: asteroidMove 14s linear infinite;
+}
+
+.asteroid-two {
+  top: 70%;
+  left: -50px;
+
+  transform: scale(0.7);
+
+  animation: asteroidMove 19s linear infinite;
+  animation-delay: 4s;
+}
+
+.asteroid-three {
+  top: 42%;
+  left: -50px;
+
+  transform: scale(0.45);
+
+  animation: asteroidMove 24s linear infinite;
+  animation-delay: 8s;
+}
+
+@keyframes asteroidMove {
+  0% {
+    transform: translateX(-100px) translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateX(50vw) translateY(-80px) rotate(180deg);
+  }
+
+  100% {
+    transform: translateX(110vw) translateY(40px) rotate(360deg);
+  }
+}
+
+/* =================================
+   CALCULATOR
+================================= */
+
+.bmi-calculator {
+  position: relative;
+  z-index: 10;
+
+  width: min(90%, 560px);
+
+  padding: 45px;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25, 50, 40, 0.97),
+      rgba(12, 29, 23, 0.98)
+    );
+
+  border: 1px solid rgba(183, 198, 154, 0.18);
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(77, 119, 85, 0.12);
+
+  backdrop-filter: blur(20px);
+}
+
+/* subtle glow */
+.bmi-calculator::before {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  top: -90px;
+  right: -90px;
+
+  background: rgba(142, 164, 111, 0.12);
+
+  border-radius: 50%;
+
+  filter: blur(30px);
+}
+
+/* =================================
+   HEADER
+================================= */
+
+.calculator-header {
+  text-align: center;
+
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  color: #91a878;
+}
+
+.calculator-header h1 {
+  font-family: "Playfair Display", serif;
+
+  font-size: 40px;
+
+  color: #f2f1d8;
+
+  margin-bottom: 10px;
+}
+
+.calculator-header p {
+  color: #9daea0;
+
+  font-size: 14px;
+}
+
+/* =================================
+   ERROR
+================================= */
+
+.error {
+  padding: 12px 15px;
+
+  margin-bottom: 20px;
+
+  border-radius: 10px;
+
+  background: rgba(170, 74, 63, 0.16);
+
+  border: 1px solid rgba(207, 112, 99, 0.35);
+
+  color: #e5a39a;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+/* =================================
+   INPUTS
+================================= */
+
+.input-container {
+  display: flex;
+
+  align-items: center;
+
+  margin-bottom: 18px;
+}
+
+.input-container label {
+  width: 140px;
+
+  color: #d8ddc7;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.input-container label span {
+  color: #839579;
+
+  font-size: 12px;
+
+  margin-left: 5px;
+}
+
+.input-container input {
+  flex: 1;
+
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border-radius: 11px;
+
+  border: 1px solid #40584a;
+
+  background: #101f19;
+
+  color: #eef0dc;
+
+  font-family: "DM Sans", sans-serif;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.25s ease;
+}
+
+.input-container input::placeholder {
+  color: #637469;
+}
+
+.input-container input:focus {
+  border-color: #8fa96e;
+
+  box-shadow:
+    0 0 0 4px rgba(143, 169, 110, 0.1);
+}
+
+/* =================================
+   BUTTONS
+================================= */
+
+.buttons {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 10px;
+}
+
+.buttons button {
+  border: none;
+
+  border-radius: 11px;
+
+  padding: 14px 20px;
+
+  font-family: "DM Sans", sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.calculate-button {
+  flex: 1;
+
+  background: #9aaf78;
+
+  color: #122018;
+
+  box-shadow:
+    0 8px 25px rgba(139, 163, 105, 0.18);
+}
+
+.calculate-button:hover {
+  background: #aec38b;
+
+  transform: translateY(-2px);
+}
+
+.clear-button {
+  background: #1b3027;
+
+  color: #aebca3;
+
+  border: 1px solid #3b5346 !important;
+}
+
+.clear-button:hover {
+  background: #263e33;
+
+  color: #e2e8d7;
+
+  transform: translateY(-2px);
+}
+
+/* =================================
+   RESULT
+================================= */
+
+.result {
+  margin-top: 28px;
+
+  padding: 25px;
+
+  text-align: center;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(130, 153, 99, 0.14),
+      rgba(32, 61, 48, 0.5)
+    );
+
+  border: 1px solid rgba(145, 169, 111, 0.2);
+
+  animation: resultAppear 0.4s ease;
+}
+
+.result span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #899b84;
+
+  font-size: 12px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 2px;
+}
+
+.result strong {
+  display: block;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 42px;
+
+  color: #edf0d5;
+}
+
+.result p {
+  margin-top: 5px;
+
+  color: #a9bd8c;
+
+  font-weight: 600;
+
+  text-transform: capitalize;
+}
+
+@keyframes resultAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+  .bmi-calculator {
+    width: 92%;
+
+    padding: 30px 22px;
+  }
+
+  .calculator-header h1 {
+    font-size: 32px;
+  }
+
+  .input-container {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .input-container label {
+    width: 100%;
+
+    margin-bottom: 7px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .moon {
+    width: 70px;
+    height: 70px;
+
+    right: 8%;
+  }
+}
